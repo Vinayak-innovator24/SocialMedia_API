@@ -1,0 +1,21 @@
+version: '3.4'
+
+services:
+  reunionassignment:
+    image: reunionassignment
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: production
+      MONGO_URL: ${MONGO_URL}
+      SECRET_KEY: ${SECRET_KEY}
+    ports:
+      - 3000:3000
+    depends_on:
+      - mongo
+  mongo:
+    container_name: mongo
+    image: mongo
+    ports:
+      - '27018:27017'

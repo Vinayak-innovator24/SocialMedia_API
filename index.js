@@ -29,7 +29,9 @@ app.use(morgan("common"));
 app.use("/api/users", middleware, userRoute);
 app.use("/api/authenticate",  authRoute);
 app.use("/api/posts", middleware, postRoute);
-
+app.use("/", async function (req, res) {
+    res.status(404).send("No Route Found");
+})
 // using express
 app.listen(3000, ()=> {
     console.log("Connected to backend server")
